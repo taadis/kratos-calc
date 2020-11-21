@@ -10,7 +10,7 @@ import (
 	"github.com/go-kratos/kratos/pkg/database/sql"
 	"github.com/go-kratos/kratos/pkg/sync/pipeline/fanout"
 	xtime "github.com/go-kratos/kratos/pkg/time"
-	"kratos-calc/internal/model"
+	"github.com/taadis/kratos-calc/internal/model"
 
 	"github.com/google/wire"
 )

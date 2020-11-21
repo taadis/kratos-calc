@@ -1,7 +1,7 @@
 package grpc
 
 import (
-	pb "kratos-calc/api"
+	pb "github.com/taadis/kratos-calc/api"
 
 	"github.com/go-kratos/kratos/pkg/conf/paladin"
 	"github.com/go-kratos/kratos/pkg/net/rpc/warden"

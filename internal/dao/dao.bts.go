@@ -17,7 +17,7 @@ import (
 	"context"
 
 	"github.com/go-kratos/kratos/pkg/cache"
-	"kratos-calc/internal/model"
+	"github.com/taadis/kratos-calc/internal/model"
 )
 
 // Article get data from cache if miss will call source method, then add to cache.

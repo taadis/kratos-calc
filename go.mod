@@ -1,4 +1,4 @@
-module kratos-calc
+module github.com/taadis/kratos-calc
 
 go 1.13
 

@@ -6,8 +6,8 @@ import (
 	"github.com/go-kratos/kratos/pkg/conf/paladin"
 	"github.com/go-kratos/kratos/pkg/log"
 	bm "github.com/go-kratos/kratos/pkg/net/http/blademaster"
-	pb "kratos-calc/api"
-	"kratos-calc/internal/model"
+	pb "github.com/taadis/kratos-calc/api"
+	"github.com/taadis/kratos-calc/internal/model"
 )
 
 var svc pb.CalcServer

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"kratos-calc/internal/service"
+	"github.com/taadis/kratos-calc/internal/service"
 
 	"github.com/go-kratos/kratos/pkg/log"
 	bm "github.com/go-kratos/kratos/pkg/net/http/blademaster"

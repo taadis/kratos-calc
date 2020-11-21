@@ -21,7 +21,7 @@ import (
 
 	"github.com/go-kratos/kratos/pkg/cache/memcache"
 	"github.com/go-kratos/kratos/pkg/log"
-	"kratos-calc/internal/model"
+	"github.com/taadis/kratos-calc/internal/model"
 )
 
 var _ _mc

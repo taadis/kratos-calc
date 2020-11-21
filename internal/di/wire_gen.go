@@ -6,10 +6,10 @@
 package di
 
 import (
-	"kratos-calc/internal/dao"
-	"kratos-calc/internal/server/grpc"
-	"kratos-calc/internal/server/http"
-	"kratos-calc/internal/service"
+	"github.com/taadis/kratos-calc/internal/dao"
+	"github.com/taadis/kratos-calc/internal/server/grpc"
+	"github.com/taadis/kratos-calc/internal/server/http"
+	"github.com/taadis/kratos-calc/internal/service"
 )
 
 // Injectors from wire.go:

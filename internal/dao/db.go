@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-kratos/kratos/pkg/conf/paladin"
 	"github.com/go-kratos/kratos/pkg/database/sql"
-	"kratos-calc/internal/model"
+	"github.com/taadis/kratos-calc/internal/model"
 )
 
 func NewDB() (db *sql.DB, cf func(), err error) {

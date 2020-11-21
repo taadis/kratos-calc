@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/go-kratos/kratos/pkg/conf/paladin"
-	pb "kratos-calc/api"
-	"kratos-calc/internal/dao"
+	pb "github.com/taadis/kratos-calc/api"
+	"github.com/taadis/kratos-calc/internal/dao"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/wire"

@@ -7,7 +7,7 @@ import (
 	"github.com/go-kratos/kratos/pkg/cache/memcache"
 	"github.com/go-kratos/kratos/pkg/conf/paladin"
 	"github.com/go-kratos/kratos/pkg/log"
-	"kratos-calc/internal/model"
+	"github.com/taadis/kratos-calc/internal/model"
 )
 
 //go:generate kratos tool genmc
