@@ -18,7 +18,7 @@ import (
 	bm "github.com/go-kratos/kratos/pkg/net/http/blademaster"
 	"github.com/go-kratos/kratos/pkg/net/http/blademaster/binding"
 )
-import google_protobuf1 "github.com/golang/protobuf/ptypes/empty"
+import google_protobuf1 "google.golang.org/protobuf/types/known/emptypb"
 
 // to suppressed 'imported but not used warning'
 var _ *bm.Context
@@ -28,6 +28,7 @@ var _ binding.StructValidator
 var PathCalcPing = "/calc.service.v1.Calc/Ping"
 var PathCalcAdd = "/calc/add"
 var PathCalcSubtract = "/calc/subtract"
+var PathCalcMultiply = "/calc/multiply"
 
 // CalcBMServer is the server API for Calc service.
 type CalcBMServer interface {
@@ -36,6 +37,8 @@ type CalcBMServer interface {
 	Add(ctx context.Context, req *AddRequest) (resp *AddResponse, err error)
 
 	Subtract(ctx context.Context, req *SubtractRequest) (resp *SubtractResponse, err error)
+
+	Multiply(ctx context.Context, req *MultiplyRequest) (resp *MultiplyResponse, err error)
 }
 
 var CalcSvc CalcBMServer
@@ -67,10 +70,20 @@ func calcSubtract(c *bm.Context) {
 	c.JSON(resp, err)
 }
 
+func calcMultiply(c *bm.Context) {
+	p := new(MultiplyRequest)
+	if err := c.BindWith(p, binding.Default(c.Request.Method, c.Request.Header.Get("Content-Type"))); err != nil {
+		return
+	}
+	resp, err := CalcSvc.Multiply(c, p)
+	c.JSON(resp, err)
+}
+
 // RegisterCalcBMServer Register the blademaster route
 func RegisterCalcBMServer(e *bm.Engine, server CalcBMServer) {
 	CalcSvc = server
 	e.GET("/calc.service.v1.Calc/Ping", calcPing)
 	e.GET("/calc/add", calcAdd)
 	e.GET("/calc/subtract", calcSubtract)
+	e.GET("/calc/multiply", calcMultiply)
 }

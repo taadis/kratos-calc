@@ -35,7 +35,8 @@ panic: exit status 2
 
 可以通过 curl/postman/浏览器 访问以下 url 来查看
 
-- localhost:8000/calc/add?a=1&b=2
-- localhost:8000/calc/subtract?a=1&b=2
+- [http://localhost:8000/calc/add?a=1&b=2](http://localhost:8000/calc/add?a=1&b=2)
+- [http://localhost:8000/calc/subtract?a=1&b=2](http://localhost:8000/calc/subtract?a=1&b=2)
+- [http://localhost:8000/calc//multiply?a=1&b=2](http://localhost:8000/calc//multiply?a=1&b=2)
 
 ## 搞定

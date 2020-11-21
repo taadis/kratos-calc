@@ -54,6 +54,15 @@ func (s *Service) Subtract(ctx context.Context, req *pb.SubtractRequest) (res *p
 	return
 }
 
+// Multiply
+func (s *Service) Multiply(ctx context.Context, req *pb.MultiplyRequest) (res *pb.MultiplyResponse, err error){
+	res = &pb.MultiplyResponse{
+		C: req.A * req.B,
+	}
+	fmt.Println("Multiply", req.A, "*", req.B, "=", res.C)
+	return
+}
+
 // Close close the resource.
 func (s *Service) Close() {
 }

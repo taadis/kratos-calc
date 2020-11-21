@@ -10,11 +10,11 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/golang/protobuf/proto"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -193,41 +193,126 @@ func (m *SubtractResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_SubtractResponse proto.InternalMessageInfo
 
+type MultiplyRequest struct {
+	A                    int64    `protobuf:"varint,1,opt,name=a,proto3" json:"a,omitempty" form:"a" validate:"required"`
+	B                    int64    `protobuf:"varint,2,opt,name=b,proto3" json:"b,omitempty" form:"b" validate:"required"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *MultiplyRequest) Reset()         { *m = MultiplyRequest{} }
+func (m *MultiplyRequest) String() string { return proto.CompactTextString(m) }
+func (*MultiplyRequest) ProtoMessage()    {}
+func (*MultiplyRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{4}
+}
+func (m *MultiplyRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MultiplyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MultiplyRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MultiplyRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MultiplyRequest.Merge(m, src)
+}
+func (m *MultiplyRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *MultiplyRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_MultiplyRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MultiplyRequest proto.InternalMessageInfo
+
+type MultiplyResponse struct {
+	C                    int64    `protobuf:"varint,1,opt,name=c,proto3" json:"c"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *MultiplyResponse) Reset()         { *m = MultiplyResponse{} }
+func (m *MultiplyResponse) String() string { return proto.CompactTextString(m) }
+func (*MultiplyResponse) ProtoMessage()    {}
+func (*MultiplyResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{5}
+}
+func (m *MultiplyResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MultiplyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MultiplyResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MultiplyResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MultiplyResponse.Merge(m, src)
+}
+func (m *MultiplyResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MultiplyResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MultiplyResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MultiplyResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*AddRequest)(nil), "calc.service.v1.AddRequest")
 	proto.RegisterType((*AddResponse)(nil), "calc.service.v1.AddResponse")
 	proto.RegisterType((*SubtractRequest)(nil), "calc.service.v1.SubtractRequest")
 	proto.RegisterType((*SubtractResponse)(nil), "calc.service.v1.SubtractResponse")
+	proto.RegisterType((*MultiplyRequest)(nil), "calc.service.v1.MultiplyRequest")
+	proto.RegisterType((*MultiplyResponse)(nil), "calc.service.v1.MultiplyResponse")
 }
 
 func init() { proto.RegisterFile("api.proto", fileDescriptor_00212fb1f9d3bf1c) }
 
 var fileDescriptor_00212fb1f9d3bf1c = []byte{
-	// 371 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x91, 0xb1, 0x4f, 0xf2, 0x40,
-	0x18, 0xc6, 0x39, 0xe0, 0xfb, 0xf2, 0x71, 0x24, 0x1f, 0x7c, 0xf7, 0x25, 0x04, 0x0b, 0x29, 0xf5,
-	0x16, 0x5d, 0xbc, 0x46, 0x4d, 0x1c, 0xd8, 0xc0, 0xb8, 0x1b, 0xd8, 0xdc, 0xae, 0x77, 0x47, 0xbd,
-	0xa4, 0xf4, 0x4a, 0x7b, 0x25, 0x71, 0xf5, 0x5f, 0x70, 0xf1, 0x4f, 0x62, 0x34, 0x71, 0x27, 0x8a,
-	0x4e, 0x8e, 0xce, 0x0e, 0x86, 0x6b, 0x09, 0x09, 0x0a, 0xa3, 0x5b, 0xdf, 0x3e, 0xbf, 0x37, 0xcf,
-	0x73, 0xcf, 0x0b, 0x2b, 0x34, 0x92, 0x24, 0x8a, 0x95, 0x56, 0xa8, 0xc6, 0x68, 0xc0, 0x48, 0x22,
-	0xe2, 0xa9, 0x64, 0x82, 0x4c, 0x8f, 0xad, 0x23, 0x5f, 0xea, 0xeb, 0xd4, 0x23, 0x4c, 0x8d, 0x5d,
-	0x5f, 0xf9, 0xca, 0x35, 0x9c, 0x97, 0x8e, 0xcc, 0x64, 0x06, 0xf3, 0x95, 0xed, 0x5b, 0x2d, 0x5f,
-	0x29, 0x3f, 0x10, 0x6b, 0x4a, 0x8c, 0x23, 0x7d, 0x93, 0x8b, 0xed, 0x5c, 0xa4, 0x91, 0x74, 0x69,
-	0x18, 0x2a, 0x4d, 0xb5, 0x54, 0x61, 0x92, 0xa9, 0x38, 0x80, 0xb0, 0xc7, 0xf9, 0x40, 0x4c, 0x52,
-	0x91, 0x68, 0x44, 0x20, 0xa0, 0x4d, 0xe0, 0x80, 0xc3, 0x52, 0xdf, 0x79, 0x9f, 0x77, 0xda, 0x23,
-	0x15, 0x8f, 0xbb, 0x98, 0x62, 0x67, 0x4a, 0x03, 0xc9, 0xa9, 0x16, 0x5d, 0x1c, 0x8b, 0x49, 0x2a,
-	0x63, 0xc1, 0xf1, 0x00, 0xd0, 0x25, 0xef, 0x35, 0x8b, 0x9b, 0xbc, 0xb7, 0x85, 0xf7, 0x30, 0x86,
-	0x55, 0xe3, 0x96, 0x44, 0x2a, 0x4c, 0x04, 0xfa, 0x0f, 0x01, 0xcb, 0xed, 0x7e, 0xbd, 0xcd, 0x3b,
-	0x80, 0x0d, 0x00, 0xc3, 0x13, 0x58, 0x1b, 0xa6, 0x9e, 0x8e, 0x29, 0xd3, 0x3f, 0x15, 0xeb, 0x00,
-	0xd6, 0xd7, 0x96, 0x3b, 0xb2, 0x9d, 0x7c, 0x00, 0x58, 0x3e, 0xa7, 0x01, 0x43, 0x67, 0xb0, 0x7c,
-	0x29, 0x43, 0x1f, 0x35, 0x48, 0xd6, 0x2e, 0x59, 0x55, 0x4f, 0x2e, 0x96, 0xd5, 0x5b, 0x5b, 0xfe,
-	0xa3, 0x21, 0x2c, 0xf5, 0x38, 0x47, 0x2d, 0xb2, 0x71, 0x71, 0xb2, 0x3e, 0x82, 0xd5, 0xfe, 0x5e,
-	0xcc, 0x72, 0xe1, 0x7f, 0xb7, 0x8f, 0xaf, 0x77, 0xc5, 0x2a, 0xaa, 0xb8, 0x4b, 0xca, 0xa5, 0x9c,
-	0x23, 0x1f, 0xfe, 0x59, 0xc5, 0x47, 0xce, 0x97, 0xe5, 0x8d, 0x32, 0xad, 0xfd, 0x1d, 0x44, 0xee,
-	0xd1, 0x30, 0x1e, 0x75, 0xf4, 0x37, 0xf3, 0x48, 0x72, 0xbd, 0xbf, 0x37, 0x7b, 0xb6, 0x0b, 0xb3,
-	0x85, 0x0d, 0x1e, 0x16, 0x36, 0x78, 0x5a, 0xd8, 0xe0, 0xfe, 0xc5, 0x2e, 0x5c, 0x95, 0x68, 0x24,
-	0xbd, 0xdf, 0xe6, 0xa1, 0xa7, 0x9f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x3b, 0x2e, 0xfa, 0x89, 0xd6,
-	0x02, 0x00, 0x00,
+	// 404 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x92, 0x4f, 0xef, 0xd2, 0x30,
+	0x1c, 0xc6, 0x29, 0xa0, 0x81, 0x92, 0x08, 0xd6, 0x84, 0xe0, 0x20, 0x63, 0xf6, 0xa2, 0x17, 0xbb,
+	0xa8, 0x89, 0x07, 0x6e, 0x60, 0x3c, 0x9a, 0x18, 0xb8, 0x79, 0xeb, 0xda, 0x52, 0x9b, 0x6c, 0xeb,
+	0xd8, 0x3a, 0x12, 0xae, 0xbe, 0x05, 0x2f, 0xbe, 0x24, 0x8e, 0x26, 0xde, 0x89, 0xa2, 0x5e, 0x3c,
+	0xfa, 0x0a, 0x0c, 0xfb, 0x93, 0x25, 0x13, 0xf8, 0xdd, 0xb8, 0xad, 0x7b, 0x9e, 0xf6, 0xf3, 0xe4,
+	0xfb, 0x7d, 0x60, 0x97, 0x46, 0x8a, 0x44, 0xb1, 0x36, 0x1a, 0xf5, 0x19, 0xf5, 0x19, 0x49, 0x44,
+	0xbc, 0x55, 0x4c, 0x90, 0xed, 0x0b, 0xeb, 0xb9, 0x54, 0xe6, 0x63, 0xea, 0x11, 0xa6, 0x03, 0x57,
+	0x6a, 0xa9, 0xdd, 0xcc, 0xe7, 0xa5, 0xeb, 0xec, 0x94, 0x1d, 0xb2, 0xaf, 0xfc, 0xbe, 0x35, 0x96,
+	0x5a, 0x4b, 0x5f, 0x54, 0x2e, 0x11, 0x44, 0x66, 0x57, 0x88, 0x93, 0x42, 0xa4, 0x91, 0x72, 0x69,
+	0x18, 0x6a, 0x43, 0x8d, 0xd2, 0x61, 0x92, 0xab, 0xd8, 0x87, 0x70, 0xce, 0xf9, 0x52, 0x6c, 0x52,
+	0x91, 0x18, 0x44, 0x20, 0xa0, 0x23, 0xe0, 0x80, 0x67, 0xad, 0x85, 0xf3, 0xf7, 0x30, 0x9d, 0xac,
+	0x75, 0x1c, 0xcc, 0x30, 0xc5, 0xce, 0x96, 0xfa, 0x8a, 0x53, 0x23, 0x66, 0x38, 0x16, 0x9b, 0x54,
+	0xc5, 0x82, 0xe3, 0x25, 0xa0, 0x27, 0xbf, 0x37, 0x6a, 0xd6, 0xfd, 0xde, 0x05, 0xbf, 0x87, 0x31,
+	0xec, 0x65, 0xb4, 0x24, 0xd2, 0x61, 0x22, 0xd0, 0x23, 0x08, 0x58, 0x81, 0xbb, 0xf7, 0xe7, 0x30,
+	0x05, 0x6c, 0x09, 0x18, 0xde, 0xc0, 0xfe, 0x2a, 0xf5, 0x4c, 0x4c, 0x99, 0xb9, 0x55, 0xac, 0xa7,
+	0x70, 0x50, 0x21, 0xef, 0xc8, 0xf6, 0x2e, 0xf5, 0x8d, 0x8a, 0xfc, 0xdd, 0x0d, 0xb3, 0x55, 0xc8,
+	0x2b, 0xd9, 0x5e, 0xfe, 0x6e, 0xc2, 0xf6, 0x1b, 0xea, 0x33, 0xf4, 0x1a, 0xb6, 0xdf, 0xab, 0x50,
+	0xa2, 0x21, 0xc9, 0x37, 0x4f, 0xca, 0x5a, 0x90, 0xb7, 0xa7, 0x5a, 0x58, 0x17, 0xfe, 0xa3, 0x15,
+	0x6c, 0xcd, 0x39, 0x47, 0x63, 0x52, 0x6b, 0x23, 0xa9, 0x0a, 0x62, 0x4d, 0xce, 0x8b, 0x79, 0x2e,
+	0xfc, 0xf0, 0xd3, 0xb7, 0x5f, 0x9f, 0x9b, 0x3d, 0xd4, 0x75, 0x4f, 0x2e, 0x97, 0x72, 0x8e, 0x24,
+	0xec, 0x94, 0xa3, 0x45, 0xce, 0x7f, 0x97, 0x6b, 0x8b, 0xb6, 0x9e, 0x5c, 0x71, 0x14, 0x8c, 0x61,
+	0xc6, 0x18, 0xa0, 0x07, 0x39, 0x23, 0x29, 0x1f, 0x97, 0xb0, 0x53, 0xce, 0xe9, 0x0c, 0xa8, 0xb6,
+	0xb5, 0x33, 0xa0, 0xfa, 0x90, 0xeb, 0xa0, 0xa0, 0xd0, 0x17, 0x8f, 0xf7, 0x3f, 0xec, 0xc6, 0xfe,
+	0x68, 0x83, 0xaf, 0x47, 0x1b, 0x7c, 0x3f, 0xda, 0xe0, 0xcb, 0x4f, 0xbb, 0xf1, 0xa1, 0x45, 0x23,
+	0xe5, 0xdd, 0xcf, 0x26, 0xfa, 0xea, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x28, 0xca, 0x37, 0xcf,
+	0xdb, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -242,9 +327,10 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CalcClient interface {
-	Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*empty.Empty, error)
+	Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
 	Subtract(ctx context.Context, in *SubtractRequest, opts ...grpc.CallOption) (*SubtractResponse, error)
+	Multiply(ctx context.Context, in *MultiplyRequest, opts ...grpc.CallOption) (*MultiplyResponse, error)
 }
 
 type calcClient struct {
@@ -255,8 +341,8 @@ func NewCalcClient(cc *grpc.ClientConn) CalcClient {
 	return &calcClient{cc}
 }
 
-func (c *calcClient) Ping(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
+func (c *calcClient) Ping(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/calc.service.v1.Calc/Ping", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -282,18 +368,28 @@ func (c *calcClient) Subtract(ctx context.Context, in *SubtractRequest, opts ...
 	return out, nil
 }
 
+func (c *calcClient) Multiply(ctx context.Context, in *MultiplyRequest, opts ...grpc.CallOption) (*MultiplyResponse, error) {
+	out := new(MultiplyResponse)
+	err := c.cc.Invoke(ctx, "/calc.service.v1.Calc/Multiply", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CalcServer is the server API for Calc service.
 type CalcServer interface {
-	Ping(context.Context, *empty.Empty) (*empty.Empty, error)
+	Ping(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	Add(context.Context, *AddRequest) (*AddResponse, error)
 	Subtract(context.Context, *SubtractRequest) (*SubtractResponse, error)
+	Multiply(context.Context, *MultiplyRequest) (*MultiplyResponse, error)
 }
 
 // UnimplementedCalcServer can be embedded to have forward compatible implementations.
 type UnimplementedCalcServer struct {
 }
 
-func (*UnimplementedCalcServer) Ping(ctx context.Context, req *empty.Empty) (*empty.Empty, error) {
+func (*UnimplementedCalcServer) Ping(ctx context.Context, req *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
 func (*UnimplementedCalcServer) Add(ctx context.Context, req *AddRequest) (*AddResponse, error) {
@@ -302,13 +398,16 @@ func (*UnimplementedCalcServer) Add(ctx context.Context, req *AddRequest) (*AddR
 func (*UnimplementedCalcServer) Subtract(ctx context.Context, req *SubtractRequest) (*SubtractResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Subtract not implemented")
 }
+func (*UnimplementedCalcServer) Multiply(ctx context.Context, req *MultiplyRequest) (*MultiplyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Multiply not implemented")
+}
 
 func RegisterCalcServer(s *grpc.Server, srv CalcServer) {
 	s.RegisterService(&_Calc_serviceDesc, srv)
 }
 
 func _Calc_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(empty.Empty)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -320,7 +419,7 @@ func _Calc_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: "/calc.service.v1.Calc/Ping",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CalcServer).Ping(ctx, req.(*empty.Empty))
+		return srv.(CalcServer).Ping(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -361,6 +460,24 @@ func _Calc_Subtract_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Calc_Multiply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MultiplyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CalcServer).Multiply(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/calc.service.v1.Calc/Multiply",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CalcServer).Multiply(ctx, req.(*MultiplyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Calc_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calc.service.v1.Calc",
 	HandlerType: (*CalcServer)(nil),
@@ -376,6 +493,10 @@ var _Calc_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Subtract",
 			Handler:    _Calc_Subtract_Handler,
+		},
+		{
+			MethodName: "Multiply",
+			Handler:    _Calc_Multiply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -520,6 +641,75 @@ func (m *SubtractResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *MultiplyRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MultiplyRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MultiplyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.B != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.B))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.A != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.A))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MultiplyResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MultiplyResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MultiplyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.C != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.C))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintApi(dAtA []byte, offset int, v uint64) int {
 	offset -= sovApi(v)
 	base := offset
@@ -583,6 +773,39 @@ func (m *SubtractRequest) Size() (n int) {
 }
 
 func (m *SubtractResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.C != 0 {
+		n += 1 + sovApi(uint64(m.C))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *MultiplyRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.A != 0 {
+		n += 1 + sovApi(uint64(m.A))
+	}
+	if m.B != 0 {
+		n += 1 + sovApi(uint64(m.B))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *MultiplyResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -887,6 +1110,171 @@ func (m *SubtractResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: SubtractResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field C", wireType)
+			}
+			m.C = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.C |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MultiplyRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MultiplyRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MultiplyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field A", wireType)
+			}
+			m.A = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.A |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field B", wireType)
+			}
+			m.B = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.B |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MultiplyResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MultiplyResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MultiplyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
