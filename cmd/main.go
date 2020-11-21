@@ -7,9 +7,9 @@ import (
 	"syscall"
 	"time"
 
-	"kratos-calc/internal/di"
 	"github.com/go-kratos/kratos/pkg/conf/paladin"
 	"github.com/go-kratos/kratos/pkg/log"
+	"kratos-calc/internal/di"
 )
 
 func main() {
