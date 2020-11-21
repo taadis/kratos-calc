@@ -25,52 +25,39 @@ var _ *bm.Context
 var _ context.Context
 var _ binding.StructValidator
 
-var PathDemoPing = "/demo.service.v1.Demo/Ping"
-var PathDemoSayHello = "/demo.service.v1.Demo/SayHello"
-var PathDemoSayHelloURL = "/kratos-demo/say_hello"
+var PathCalcPing = "/calc.service.v1.Calc/Ping"
+var PathCalcAdd = "/calc/add"
 
-// DemoBMServer is the server API for Demo service.
-type DemoBMServer interface {
+// CalcBMServer is the server API for Calc service.
+type CalcBMServer interface {
 	Ping(ctx context.Context, req *google_protobuf1.Empty) (resp *google_protobuf1.Empty, err error)
 
-	SayHello(ctx context.Context, req *HelloReq) (resp *google_protobuf1.Empty, err error)
-
-	SayHelloURL(ctx context.Context, req *HelloReq) (resp *HelloResp, err error)
+	Add(ctx context.Context, req *AddRequest) (resp *AddResponse, err error)
 }
 
-var DemoSvc DemoBMServer
+var CalcSvc CalcBMServer
 
-func demoPing(c *bm.Context) {
+func calcPing(c *bm.Context) {
 	p := new(google_protobuf1.Empty)
 	if err := c.BindWith(p, binding.Default(c.Request.Method, c.Request.Header.Get("Content-Type"))); err != nil {
 		return
 	}
-	resp, err := DemoSvc.Ping(c, p)
+	resp, err := CalcSvc.Ping(c, p)
 	c.JSON(resp, err)
 }
 
-func demoSayHello(c *bm.Context) {
-	p := new(HelloReq)
+func calcAdd(c *bm.Context) {
+	p := new(AddRequest)
 	if err := c.BindWith(p, binding.Default(c.Request.Method, c.Request.Header.Get("Content-Type"))); err != nil {
 		return
 	}
-	resp, err := DemoSvc.SayHello(c, p)
+	resp, err := CalcSvc.Add(c, p)
 	c.JSON(resp, err)
 }
 
-func demoSayHelloURL(c *bm.Context) {
-	p := new(HelloReq)
-	if err := c.BindWith(p, binding.Default(c.Request.Method, c.Request.Header.Get("Content-Type"))); err != nil {
-		return
-	}
-	resp, err := DemoSvc.SayHelloURL(c, p)
-	c.JSON(resp, err)
-}
-
-// RegisterDemoBMServer Register the blademaster route
-func RegisterDemoBMServer(e *bm.Engine, server DemoBMServer) {
-	DemoSvc = server
-	e.GET("/demo.service.v1.Demo/Ping", demoPing)
-	e.GET("/demo.service.v1.Demo/SayHello", demoSayHello)
-	e.GET("/kratos-demo/say_hello", demoSayHelloURL)
+// RegisterCalcBMServer Register the blademaster route
+func RegisterCalcBMServer(e *bm.Engine, server CalcBMServer) {
+	CalcSvc = server
+	e.GET("/calc.service.v1.Calc/Ping", calcPing)
+	e.GET("/calc/add", calcAdd)
 }

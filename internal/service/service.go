@@ -4,15 +4,15 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/go-kratos/kratos/pkg/conf/paladin"
 	pb "kratos-calc/api"
 	"kratos-calc/internal/dao"
-	"github.com/go-kratos/kratos/pkg/conf/paladin"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/google/wire"
 )
 
-var Provider = wire.NewSet(New, wire.Bind(new(pb.DemoServer), new(*Service)))
+var Provider = wire.NewSet(New, wire.Bind(new(pb.CalcServer), new(*Service)))
 
 // Service service.
 type Service struct {
@@ -31,25 +31,18 @@ func New(d dao.Dao) (s *Service, cf func(), err error) {
 	return
 }
 
-// SayHello grpc demo func.
-func (s *Service) SayHello(ctx context.Context, req *pb.HelloReq) (reply *empty.Empty, err error) {
-	reply = new(empty.Empty)
-	fmt.Printf("hello %s", req.Name)
-	return
-}
-
-// SayHelloURL bm demo func.
-func (s *Service) SayHelloURL(ctx context.Context, req *pb.HelloReq) (reply *pb.HelloResp, err error) {
-	reply = &pb.HelloResp{
-		Content: "hello " + req.Name,
-	}
-	fmt.Printf("hello url %s", req.Name)
-	return
-}
-
 // Ping ping the resource.
 func (s *Service) Ping(ctx context.Context, e *empty.Empty) (*empty.Empty, error) {
 	return &empty.Empty{}, s.dao.Ping(ctx)
+}
+
+// Add
+func (s *Service) Add(ctx context.Context, req *pb.AddRequest) (res *pb.AddResponse, err error) {
+	res = &pb.AddResponse{
+		C: req.A + req.B,
+	}
+	fmt.Println("Add", req.A, req.B, res.C)
+	return
 }
 
 // Close close the resource.

@@ -3,20 +3,20 @@ package http
 import (
 	"net/http"
 
-	pb "kratos-calc/api"
-	"kratos-calc/internal/model"
 	"github.com/go-kratos/kratos/pkg/conf/paladin"
 	"github.com/go-kratos/kratos/pkg/log"
 	bm "github.com/go-kratos/kratos/pkg/net/http/blademaster"
+	pb "kratos-calc/api"
+	"kratos-calc/internal/model"
 )
 
-var svc pb.DemoServer
+var svc pb.CalcServer
 
 // New new a bm server.
-func New(s pb.DemoServer) (engine *bm.Engine, err error) {
+func New(s pb.CalcServer) (engine *bm.Engine, err error) {
 	var (
 		cfg bm.ServerConfig
-		ct paladin.TOML
+		ct  paladin.TOML
 	)
 	if err = paladin.Get("http.toml").Unmarshal(&ct); err != nil {
 		return
@@ -26,7 +26,7 @@ func New(s pb.DemoServer) (engine *bm.Engine, err error) {
 	}
 	svc = s
 	engine = bm.DefaultServer(&cfg)
-	pb.RegisterDemoBMServer(engine, s)
+	pb.RegisterCalcBMServer(engine, s)
 	initRouter(engine)
 	err = engine.Start()
 	return
@@ -34,7 +34,7 @@ func New(s pb.DemoServer) (engine *bm.Engine, err error) {
 
 func initRouter(e *bm.Engine) {
 	e.Ping(ping)
-	g := e.Group("/kratos-calc")
+	g := e.Group("/calc")
 	{
 		g.GET("/start", howToStart)
 	}
