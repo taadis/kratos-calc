@@ -19,12 +19,12 @@ service Calc {
     option (google.api.http) = {
       get: "/calc/add"
     };
-  };/*
+  };
   rpc Subtract(SubtractRequest) returns (SubtractResponse) {
     option (google.api.http) = {
       get: "/calc/subtract"
     };
-  };
+  };/*
   rpc Multiply(MultiplyRequest) returns (MultiplyResponse) {
     option (google.api.http) = {
       get: "/calc/multiply"
@@ -43,5 +43,14 @@ message AddRequest {
 }
 
 message AddResponse {
+  int64 c = 1 [(gogoproto.jsontag) = 'c'];
+}
+
+message SubtractRequest {
+  int64 a = 1 [(gogoproto.moretags) = 'form:"a" validate:"required"'];
+  int64 b = 2 [(gogoproto.moretags) = 'form:"b" validate:"required"'];
+}
+
+message SubtractResponse {
   int64 c = 1 [(gogoproto.jsontag) = 'c'];
 }

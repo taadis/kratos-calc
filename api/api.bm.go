@@ -27,12 +27,15 @@ var _ binding.StructValidator
 
 var PathCalcPing = "/calc.service.v1.Calc/Ping"
 var PathCalcAdd = "/calc/add"
+var PathCalcSubtract = "/calc/subtract"
 
 // CalcBMServer is the server API for Calc service.
 type CalcBMServer interface {
 	Ping(ctx context.Context, req *google_protobuf1.Empty) (resp *google_protobuf1.Empty, err error)
 
 	Add(ctx context.Context, req *AddRequest) (resp *AddResponse, err error)
+
+	Subtract(ctx context.Context, req *SubtractRequest) (resp *SubtractResponse, err error)
 }
 
 var CalcSvc CalcBMServer
@@ -55,9 +58,19 @@ func calcAdd(c *bm.Context) {
 	c.JSON(resp, err)
 }
 
+func calcSubtract(c *bm.Context) {
+	p := new(SubtractRequest)
+	if err := c.BindWith(p, binding.Default(c.Request.Method, c.Request.Header.Get("Content-Type"))); err != nil {
+		return
+	}
+	resp, err := CalcSvc.Subtract(c, p)
+	c.JSON(resp, err)
+}
+
 // RegisterCalcBMServer Register the blademaster route
 func RegisterCalcBMServer(e *bm.Engine, server CalcBMServer) {
 	CalcSvc = server
 	e.GET("/calc.service.v1.Calc/Ping", calcPing)
 	e.GET("/calc/add", calcAdd)
+	e.GET("/calc/subtract", calcSubtract)
 }

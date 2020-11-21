@@ -31,4 +31,11 @@ panic: exit status 2
 
 注册新的服务实现
 
+## 测试
+
+可以通过 curl/postman/浏览器 访问以下 url 来查看
+
+- localhost:8000/calc/add?a=1&b=2
+- localhost:8000/calc/subtract?a=1&b=2
+
 ## 搞定

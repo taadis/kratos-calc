@@ -45,6 +45,15 @@ func (s *Service) Add(ctx context.Context, req *pb.AddRequest) (res *pb.AddRespo
 	return
 }
 
+// Subtract
+func (s *Service) Subtract(ctx context.Context, req *pb.SubtractRequest) (res *pb.SubtractResponse, err error) {
+	res = &pb.SubtractResponse{
+		C: req.A - req.B,
+	}
+	fmt.Println("Subtract:", req.A, "-", req.B, "=", res.C)
+	return
+}
+
 // Close close the resource.
 func (s *Service) Close() {
 }
