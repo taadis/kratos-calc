@@ -29,12 +29,12 @@ service Calc {
     option (google.api.http) = {
       get: "/calc/multiply"
     };
-  };/*
+  };
   rpc Divide(DivideRequest) returns (DivideResponse) {
     option (google.api.http) = {
       get: "/calc/divide"
     };
-  };*/
+  };
 }
 
 message AddRequest {
@@ -63,3 +63,13 @@ message MultiplyRequest {
 message MultiplyResponse {
     int64 c = 1 [(gogoproto.jsontag) = 'c'];
 }
+
+message DivideRequest {
+  int64 a = 1 [(gogoproto.moretags) = 'form:"a" validate:"required"'];
+  int64 b = 2 [(gogoproto.moretags) = 'form:"b" validate:"required"'];
+}
+
+message DivideResponse {
+  int64 c = 1 [(gogoproto.jsontag) = 'c'];
+}
+

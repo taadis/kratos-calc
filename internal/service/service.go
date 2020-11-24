@@ -63,6 +63,15 @@ func (s *Service) Multiply(ctx context.Context, req *pb.MultiplyRequest) (res *p
 	return
 }
 
+// Divide
+func (s *Service) Divide(ctx context.Context, req *pb.DivideRequest) (res *pb.DivideResponse, err error) {
+	res = &pb.DivideResponse{
+		C: req.A / req.B,
+	}
+	fmt.Println("Divide", req.A, "/", req.B, "=", res.C)
+	return
+}
+
 // Close close the resource.
 func (s *Service) Close() {
 }
